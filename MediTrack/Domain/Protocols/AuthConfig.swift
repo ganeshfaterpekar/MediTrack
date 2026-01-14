@@ -6,3 +6,7 @@
 //
 
 
+protocol AuthConfig {
+    func getUser() -> String
+    func getApiKey() -> String
+}
