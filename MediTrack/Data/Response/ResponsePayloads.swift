@@ -36,11 +36,36 @@ extension MedicationResponse {
 extension FrequencyResponse {
     func toDomain() -> Frequency {
         switch self {
-        case .daily: return .daily(time: MedicationTime.firstDoseTime)
-        case .twice_daily: return .twice_daily(first: MedicationTime.firstDoseTime, second: MedicationTime.SecondDoseTine)
-        case .weekly: return .weekly(days: [Weekdays.doseDay], time: MedicationTime.firstDoseTime)
-        case .as_needed:
-            return .as_needed
+        case .daily: return .daily
+        case .twice_daily: return .twiceDaily
+        case .weekly: return .weekly
+        case .as_needed: return .asNeeded
         }
     }
+}
+
+
+struct HealthStatus: Decodable {
+    let status: String
+}
+
+struct DeletedId: Decodable {
+    let id: String
+}
+
+
+struct ListMedicationResponse: Decodable {
+    let data: [MedicationResponse]
+}
+
+struct DeleteMedicationResponse: Decodable {
+    let data: DeletedId
+}
+
+struct CreateMedicationResponse: Decodable {
+    let data: MedicationResponse
+}
+
+struct UpdateMedicationResponse: Decodable {
+    let data: MedicationResponse
 }
