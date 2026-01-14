@@ -11,8 +11,8 @@ import SwiftUI
 final class MedicationListViewModel: ObservableObject {
     
     @Published private(set) var medications: [Medication] = []
-    @Published private(set) var isEmpty: Bool = true
-    
+    @Published var errorMessage: String?
+    var isEmpty: Bool { medications.isEmpty }
     private let medicationService: MedicationService
     
     init(medicationService: MedicationService) {
@@ -21,7 +21,22 @@ final class MedicationListViewModel: ObservableObject {
     
     
     func load() async throws {
-        medications  = try await medicationService.getMedications()
-        isEmpty = medications.isEmpty
+        do {
+            medications  = try await medicationService.listMedications()
+        }catch {
+            print(error)
+        }
+    }
+    
+    func delete(offsets: IndexSet) async {
+        let ids = offsets.map { medications[$0].id }
+          do {
+               for id in ids {
+               _ = try await medicationService.deleteMedication(id: id)
+            }
+            medications.remove(atOffsets: offsets)
+           } catch {
+                errorMessage = error.localizedDescription
+          }
     }
 }

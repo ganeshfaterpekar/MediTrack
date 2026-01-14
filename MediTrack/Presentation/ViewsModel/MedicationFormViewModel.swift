@@ -8,21 +8,48 @@
 import Foundation
 
 @MainActor
-final class AddMedicationViewModel: ObservableObject {
+final class MedicationFormViewModel: ObservableObject {
     @Published var name: String
     @Published var dosage: String
     @Published var frequency: Frequency
     
     
-    init(name: String, dosage: String, frequency: Frequency) {
-        self.name = name
-        self.dosage = dosage
-        self.frequency = frequency
+    @Published private(set) var isSaving = false
+    @Published private(set) var errorMessage: String?
+    
+    private let medicatonService: MedicationService
+    private let existingId: String?
+    
+    
+    init(medication: Medication?, medicationService: MedicationService) {
+        self.existingId = medication?.id.uuidString
+        self.name = medication?.name ?? ""
+        self.dosage = medication?.dosage ?? ""
+        self.frequency = medication?.frequency ?? .daily
+        self.medicatonService = medicationService
     }
     
     
-    func save() async {
+    func save() async -> Medication? {
+      errorMessage = nil
+      isSaving = true
+      defer { isSaving = false }
+       
+      guard !name.trimmingCharacters(in: .whitespacesAndNewlines).isEmpty else {
+            errorMessage = "Name is required"
+            return nil
+      }
         
+      do {
+          if let id = existingId {
+              return try await medicatonService.updateMedication(id: id, name: name, dosage: dosage, frequency: frequency.rawValue)
+          }
+          
+          return try await medicatonService.createMedications(name: name, dosage: dosage, frequency: frequency.rawValue)
+      } catch {
+          errorMessage = error.localizedDescription
+          return nil
+      }
     }
     
 }
