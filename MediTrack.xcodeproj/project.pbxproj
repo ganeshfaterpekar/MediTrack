@@ -6,6 +6,11 @@
 	objectVersion = 77;
 	objects = {
 
+/* Begin PBXBuildFile section */
+		D270ACC92F155C0600A760CB /* HENetworking in Frameworks */ = {isa = PBXBuildFile; productRef = D270ACC82F155C0600A760CB /* HENetworking */; };
+		D270ACCB2F155C0A00A760CB /* HEUILibrary in Frameworks */ = {isa = PBXBuildFile; productRef = D270ACCA2F155C0A00A760CB /* HEUILibrary */; };
+/* End PBXBuildFile section */
+
 /* Begin PBXContainerItemProxy section */
 		D270AC452F14681A00A760CB /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
@@ -27,7 +32,8 @@
 		D270AC372F14681700A760CB /* MediTrack.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MediTrack.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		D270AC442F14681A00A760CB /* MediTrackTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = MediTrackTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		D270AC4E2F14681A00A760CB /* MediTrackUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = MediTrackUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
-		D270ACAF2F14920800A760CB /* HBUILibrary */ = {isa = PBXFileReference; lastKnownFileType = wrapper; path = HBUILibrary; sourceTree = "<group>"; };
+		D270ACB02F149EA000A760CB /* HEUILibrary */ = {isa = PBXFileReference; lastKnownFileType = wrapper; path = HEUILibrary; sourceTree = "<group>"; };
+		D270ACB12F14AB3100A760CB /* HENetworking */ = {isa = PBXFileReference; lastKnownFileType = wrapper; path = HENetworking; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFileSystemSynchronizedRootGroup section */
@@ -53,6 +59,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				D270ACC92F155C0600A760CB /* HENetworking in Frameworks */,
+				D270ACCB2F155C0A00A760CB /* HEUILibrary in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -76,10 +84,12 @@
 		D270AC2E2F14681700A760CB = {
 			isa = PBXGroup;
 			children = (
-				D270ACAF2F14920800A760CB /* HBUILibrary */,
+				D270ACB12F14AB3100A760CB /* HENetworking */,
+				D270ACB02F149EA000A760CB /* HEUILibrary */,
 				D270AC392F14681700A760CB /* MediTrack */,
 				D270AC472F14681A00A760CB /* MediTrackTests */,
 				D270AC512F14681A00A760CB /* MediTrackUITests */,
+				D270ACC72F155C0600A760CB /* Frameworks */,
 				D270AC382F14681700A760CB /* Products */,
 			);
 			sourceTree = "<group>";
@@ -92,6 +102,13 @@
 				D270AC4E2F14681A00A760CB /* MediTrackUITests.xctest */,
 			);
 			name = Products;
+			sourceTree = "<group>";
+		};
+		D270ACC72F155C0600A760CB /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = Frameworks;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -114,6 +131,8 @@
 			);
 			name = MediTrack;
 			packageProductDependencies = (
+				D270ACC82F155C0600A760CB /* HENetworking */,
+				D270ACCA2F155C0A00A760CB /* HEUILibrary */,
 			);
 			productName = MediTrack;
 			productReference = D270AC372F14681700A760CB /* MediTrack.app */;
@@ -552,6 +571,17 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		D270ACC82F155C0600A760CB /* HENetworking */ = {
+			isa = XCSwiftPackageProductDependency;
+			productName = HENetworking;
+		};
+		D270ACCA2F155C0A00A760CB /* HEUILibrary */ = {
+			isa = XCSwiftPackageProductDependency;
+			productName = HEUILibrary;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = D270AC2F2F14681700A760CB /* Project object */;
 }

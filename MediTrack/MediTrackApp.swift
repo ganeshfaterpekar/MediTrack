@@ -6,12 +6,34 @@
 //
 
 import SwiftUI
+import HENetworking
 
 @main
 struct MediTrackApp: App {
+   
+    private let container: AppContainer
+    
+    init() {
+        self.container = .live()
+    }
+
     var body: some Scene {
         WindowGroup {
-            ContentView()
+            MedicationListView(viewModel: container.makeMedicationListVM())
+                .environment(\.appContainer,container)
         }
     }
 }
+
+
+private struct AppContainerKey: EnvironmentKey {
+    static let defaultValue: AppContainer = .live()
+}
+
+extension EnvironmentValues {
+    var appContainer: AppContainer {
+        get { self[AppContainerKey.self] }
+        set { self[AppContainerKey.self] = newValue }
+    }
+}
+
