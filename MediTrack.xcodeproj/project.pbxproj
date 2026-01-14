@@ -27,6 +27,7 @@
 		D270AC372F14681700A760CB /* MediTrack.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MediTrack.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		D270AC442F14681A00A760CB /* MediTrackTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = MediTrackTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		D270AC4E2F14681A00A760CB /* MediTrackUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = MediTrackUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		D270ACAF2F14920800A760CB /* HBUILibrary */ = {isa = PBXFileReference; lastKnownFileType = wrapper; path = HBUILibrary; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFileSystemSynchronizedRootGroup section */
@@ -75,6 +76,7 @@
 		D270AC2E2F14681700A760CB = {
 			isa = PBXGroup;
 			children = (
+				D270ACAF2F14920800A760CB /* HBUILibrary */,
 				D270AC392F14681700A760CB /* MediTrack */,
 				D270AC472F14681A00A760CB /* MediTrackTests */,
 				D270AC512F14681A00A760CB /* MediTrackUITests */,
