@@ -160,9 +160,9 @@ public protocol NotificationScheduling: Sendable {
 
 ## Edge Cases to Handle
 
-### Authorization / permissions
-### Notification limits
-### Time zone & daylight saving time (DST)
+- Authorization / permissions
+- Notification limits
+- Time zone & daylight saving time (DST)
 
 ---
 ## Summary
