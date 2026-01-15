@@ -86,6 +86,85 @@ This avoids mismatch between UI, domain, and backend while keeping the design ex
 
 ---
 
+## ADR-004: Reminder System Implementation Plan (Not Implemented)
+## Technical Approach
+
+### 1) Create a separate SPM: Notifications Package (Medication-agnostic)
+Create a reusable module (e.g., `MBNotifications`) that schedules local notifications for *any* domain.
+
+**Responsibilities**
+- Request notification permission
+- Schedule notifications based on a generic schedule model
+- Cancel/update pending notifications by identifier
+
+
+**Non-goals**
+- The package must not import or reference app-specific types such as `Medication`, `MedicationFrequency`, or `Frequency`
+
+This makes the package reusable for other features and future apps.
+
+---
+### 2) Platform APIs Used
+- `UserNotifications`
+  - `UNUserNotificationCenter`
+  - `UNNotificationRequest`
+  - `UNCalendarNotificationTrigger` (repeating schedules)
+---
+
+## Proposed Notifications Package API
+
+### Generic schedule model (domain-agnostic)
+
+```swift
+public enum NotificationSchedule: Sendable, Equatable {
+    case calendar(DateComponents, repeats: Bool)
+    case calendars([DateComponents], repeats: Bool)   // e.g., twice daily
+}
+```
+
+### Request model
+
+```swift
+public struct NotificationRequest: Sendable, Equatable {
+    public let id: String                    // stable identifier (e.g., medicationId)
+    public let title: String
+    public let body: String
+    public let schedule: NotificationSchedule
+}
+```
+
+### Scheduler interface
+
+```swift
+public protocol NotificationScheduling: Sendable {
+    func requestAuthorizationIfNeeded() async throws
+    func schedule(_ request: NotificationRequest) async throws
+    func cancel(ids: [String]) async
+}
+```
+
+### Concrete implementation
+- `LocalNotificationScheduler: NotificationScheduling`
+  - Internally uses `UNUserNotificationCenter`
+
+---
+
+## Integration with Existing Architecture
+
+### Where reminder logic belongs
+- **Domain** defines intent via a protocol (app-specific): `MedicationReminderService`
+- **Infrastructure/Data** implements the protocol by adapting Medication → generic notification request(s)
+- **Notifications SPM** performs the scheduling (platform-specific, but medication-agnostic)
+
+---
+
+## Edge Cases to Handle
+
+### Authorization / permissions
+### Notification limits
+### Time zone & daylight saving time (DST)
+
+---
 ## Summary
 
 These decisions prioritise:
