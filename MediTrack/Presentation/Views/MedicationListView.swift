@@ -31,7 +31,7 @@ struct MedicationListView: View {
                 else {
                     List {
                         ForEach(viewModel.medications) { medication in
-                            MedicationUI.makeMedicationListRowItem(medication: medication)
+                            MedicationUIFactory.makeMedicationListRowItem(medication: medication)
                                 .contentShape(Rectangle())
                                 .onTapGesture {
                                     selectedMedication = medication

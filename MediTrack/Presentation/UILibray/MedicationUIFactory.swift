@@ -7,7 +7,7 @@
 
 import HEUILibrary
 
-enum MedicationUI {
+enum MedicationUIFactory {
   
    static func makeMedicationListRowItem(medication: Medication) -> ThumbnailDescriptionView {
         return ThumbnailDescriptionView(name: medication.name, dosage: medication.dosage, frequency: medication.frequency.displayTitle, image: "pills")

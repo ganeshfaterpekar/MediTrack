@@ -44,7 +44,7 @@ MedicationApp
 ├─ Domain
 │  ├─ Models
 │  │  ├─ Medication.swift
-│  │  └─ MedicationFrequency.swift
+│  │  └─ Frequency.swift
 │  └─ Protocols
 │     └─ MedicationService.swift
 │
@@ -69,7 +69,8 @@ MedicationApp
    │  ├─ MedicationListViewModel.swift
    │  └─ MedicationFormViewModel.swift
    │
-   └─ Shared
+   └─ UILibrary
+      ├─ MedicationUIFactory.swift
       └─ Utils.swift
       
 ```
@@ -159,7 +160,7 @@ The project uses **two SPM packages**:
 - Unit tests focus on ViewModels
 - Data layer is mocked via `MedicationService`
 - Domain models are pure and require minimal testing
-- UI behavior driven by ViewModel stateś
+- UI behavior driven by ViewModel state
 ---
 
 ## 🚀 Future Improvements
