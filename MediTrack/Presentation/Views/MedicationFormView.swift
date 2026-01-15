@@ -23,7 +23,9 @@ struct MedicationFormView: View {
             Form {
                 Section("Medication") {
                     TextField("Name",text: $viewModel.name)
+                        .limitTextLength($viewModel.name, max: 10)
                     TextField("Dosage",text: $viewModel.dosage)
+                        .limitTextLength($viewModel.dosage, max: 100)
                 }
                 
                 Section("Please select Medication Frequeny") {

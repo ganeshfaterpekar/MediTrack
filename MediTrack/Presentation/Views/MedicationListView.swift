@@ -42,7 +42,7 @@ struct MedicationListView: View {
                             }
                         }
                         
-                    }.listStyle(.plain)
+                    }.listStyle(.automatic)
                 }
            }.navigationTitle("Medications")
             .toolbar {

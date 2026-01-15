@@ -40,6 +40,11 @@ final class MedicationFormViewModel: ObservableObject {
             return nil
       }
         
+      guard !dosage.trimmingCharacters(in: .whitespacesAndNewlines).isEmpty else {
+              errorMessage = "Dosage is required"
+              return nil
+      }
+        
       do {
           if let id = existingId {
               return try await medicatonService.updateMedication(id: id, name: name, dosage: dosage, frequency: frequency.rawValue)

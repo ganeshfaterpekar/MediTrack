@@ -24,7 +24,7 @@ final class MedicationListViewModel: ObservableObject {
         do {
             medications  = try await medicationService.listMedications()
         }catch {
-            print(error)
+            errorMessage = error.localizedDescription
         }
     }
     
