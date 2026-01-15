@@ -31,11 +31,11 @@ struct MedicationListView: View {
                 else {
                     List {
                         ForEach(viewModel.medications) { medication in
-                            Button {
-                                selectedMedication = medication
-                            } label: {
-                                MedicationUI.makeMedicationListRowItem(medication: medication)
-                            }.buttonStyle(.plain)
+                            MedicationUI.makeMedicationListRowItem(medication: medication)
+                                .contentShape(Rectangle())
+                                .onTapGesture {
+                                    selectedMedication = medication
+                            }
                         }.onDelete { offsets in
                             Task {
                                 await viewModel.delete(offsets: offsets)
@@ -55,18 +55,18 @@ struct MedicationListView: View {
             .sheet(isPresented: $showAdd) {
                 MedicationFormView(viewModel: container.makeMakeMediticationFormVM()) { medication in
                     showAdd = false
-                    Task {try? await viewModel.load() }
+                    Task { await viewModel.load() }
                 }
             }
             .sheet(item: $selectedMedication) { medication in
                 MedicationFormView(viewModel: container.makeMakeMediticationFormVM(medication)) { _ in
                     selectedMedication = nil
-                    Task {try? await viewModel.load() }
+                    Task { await viewModel.load() }
                 }
             }
            
            }.task {
-            try? await viewModel.load()
+             await viewModel.load()
           }
     }
     

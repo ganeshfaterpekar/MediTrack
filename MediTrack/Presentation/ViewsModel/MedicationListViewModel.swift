@@ -20,10 +20,10 @@ final class MedicationListViewModel: ObservableObject {
     }
     
     
-    func load() async throws {
+    func load() async {
         do {
             medications  = try await medicationService.listMedications()
-        }catch {
+        } catch {
             errorMessage = error.localizedDescription
         }
     }
