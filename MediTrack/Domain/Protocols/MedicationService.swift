@@ -8,7 +8,6 @@
 import Foundation
 
 protocol MedicationService {
-    func health() async throws -> String
     func listMedications() async throws -> [Medication]
     func getMedicationDetails(id: UUID) async throws -> Medication
     func createMedications(name: String, dosage: String, frequency: String) async throws -> Medication

@@ -6,7 +6,7 @@
 //
 import Foundation
 
-struct Medication: Decodable, Identifiable {
+struct Medication: Decodable, Identifiable, Equatable {
     let id: UUID
     let name: String
     let dosage: String

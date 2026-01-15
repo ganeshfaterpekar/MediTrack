@@ -40,3 +40,12 @@ final class MedicationListViewModel: ObservableObject {
           }
     }
 }
+
+#if DEBUG
+@MainActor
+extension MedicationListViewModel {
+    func _setMedicationsForTests(_ meds: [Medication]) {
+        self.medications = meds
+    }
+}
+#endif

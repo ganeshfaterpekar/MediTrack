@@ -19,14 +19,6 @@ class MedicationAPIService: MedicationService {
         self.authConfig = authConfig
     }
     
-    func health() async throws -> String {
-        let response = try await networkClient.send(
-            Endpoint.health(),
-            decodeTo: HealthStatus.self
-        )
-        return response.status
-    }
-    
     func listMedications() async throws -> [Medication] {
         let response = try await networkClient.send(
             Endpoint.medications(
@@ -90,3 +82,4 @@ class MedicationAPIService: MedicationService {
 
 
 
+    
