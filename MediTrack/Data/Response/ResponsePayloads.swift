@@ -1,5 +1,5 @@
 //
-//  MedicationResponse.swift
+//  ResponsePayloads.swift
 //  MediTrack
 //
 //  Created by Ganesh Faterpekar on 12/1/2026.
@@ -26,10 +26,10 @@ enum FrequencyResponse: String, Codable {
 
 extension MedicationResponse {
     func toDomain() -> Medication {
-        Medication(id: self.id,
-                   name: self.name,
-                   dosage: self.dosage,
-                   frequency: self.frequency.toDomain())
+        Medication(id: id,
+                   name: name,
+                   dosage: dosage,
+                   frequency: frequency.toDomain())
     }
 }
 
@@ -44,7 +44,6 @@ extension FrequencyResponse {
     }
 }
 
-
 struct HealthStatus: Decodable {
     let status: String
 }
@@ -52,7 +51,6 @@ struct HealthStatus: Decodable {
 struct DeletedId: Decodable {
     let id: String
 }
-
 
 struct ListMedicationResponse: Decodable {
     let data: [MedicationResponse]

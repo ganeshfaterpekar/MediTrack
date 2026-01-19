@@ -1,5 +1,5 @@
 //
-//  RequestPayload.swift
+//  RequestPayloads.swift
 //  MediTrack
 //
 //  Created by Ganesh Faterpekar on 13/1/2026.
@@ -8,7 +8,6 @@
 import Foundation
 
 enum RequestPayload {
-    
     struct CreateMedication: Encodable {
         let name: String
         let dosage: String

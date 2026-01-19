@@ -5,11 +5,10 @@
 //  Created by Ganesh Faterpekar on 12/1/2026.
 //
 
-import XCTest
 @testable import MediTrack
+import XCTest
 
 final class MediTrackTests: XCTestCase {
-
     override func setUpWithError() throws {
         // Put setup code here. This method is called before the invocation of each test method in the class.
     }
@@ -28,9 +27,8 @@ final class MediTrackTests: XCTestCase {
 
     func testPerformanceExample() throws {
         // This is an example of a performance test case.
-        self.measure {
+        measure {
             // Put the code you want to measure the time of here.
         }
     }
-
 }

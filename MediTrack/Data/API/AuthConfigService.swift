@@ -9,9 +9,8 @@ class AuthConfigService: AuthConfig {
     func getUser() -> String {
         return "test-user"
     }
-    
+
     func getApiKey() -> String {
         return "healthengine-mobile-test-2026"
     }
-    
 }

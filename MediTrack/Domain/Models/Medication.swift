@@ -11,8 +11,4 @@ struct Medication: Decodable, Identifiable, Equatable {
     let name: String
     let dosage: String
     let frequency: Frequency
-
 }
-
-
-

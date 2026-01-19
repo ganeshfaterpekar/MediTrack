@@ -1,8 +1,8 @@
 // The Swift Programming Language
 // https://docs.swift.org/swift-book
 
-import SwiftUI
 import Foundation
+import SwiftUI
 
 public struct ThumbnailDescriptionView: View {
     let name: String
@@ -16,10 +16,9 @@ public struct ThumbnailDescriptionView: View {
         self.frequency = frequency
         self.image = image
     }
-    
+
     public var body: some View {
         HStack(alignment: .top, spacing: 12) {
-
             Image(systemName: image)
                 .resizable()
                 .scaledToFit()
@@ -46,10 +45,10 @@ public struct ThumbnailDescriptionView: View {
 
 #Preview {
     ThumbnailDescriptionView(
-            name: "Metformin",
-            dosage: "500 mg",
-            frequency: "Daily at 9:00 AM • With food",
-            image: "pills"
-        )
-        .padding()
+        name: "Metformin",
+        dosage: "500 mg",
+        frequency: "Daily at 9:00 AM • With food",
+        image: "pills"
+    )
+    .padding()
 }

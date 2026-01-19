@@ -4,7 +4,7 @@
 import Foundation
 
 public protocol HTTPClient {
-    func send<T: Decodable> (_ request: HTTPRequest, decodeTo type: T.Type) async throws -> T
+    func send<T: Decodable>(_ request: HTTPRequest, decodeTo type: T.Type) async throws -> T
 }
 
 public struct HTTPRequest {
@@ -16,14 +16,14 @@ public struct HTTPRequest {
     let method: HttpMethod
     let timeout: TimeInterval = 30
     let body: Data?
-    
+
     public init(host: String,
                 path: String,
                 queryItems: [URLQueryItem] = [],
-                headers: [String : String] = [:],
+                headers: [String: String] = [:],
                 method: HttpMethod = .get,
-                body: Data? = nil
-    ) {
+                body: Data? = nil)
+    {
         self.host = host
         self.path = path
         self.queryItems = queryItems
@@ -38,7 +38,7 @@ public enum HttpMethod {
     case post
     case put
     case delete
-    
+
     var rawValue: String {
         switch self {
         case .get: return "GET"
@@ -57,24 +57,21 @@ enum NetworkError: Error {
 }
 
 public class URLSessionSharedHTTPClient: HTTPClient {
-    
     private let decoder: JSONDecoder
-    
+
     public init(decoder: JSONDecoder) {
         self.decoder = decoder
     }
-    
+
     public func send<T: Decodable>(
         _ request: HTTPRequest,
-        decodeTo type: T.Type
+        decodeTo _: T.Type
     ) async throws -> T {
-
         var components = URLComponents()
         components.scheme = request.scheme
         components.host = request.host
         components.path = request.path
         components.queryItems = request.queryItems
-        
 
         guard let url = components.url else {
             throw NetworkError.invalidURL
@@ -84,8 +81,8 @@ public class URLSessionSharedHTTPClient: HTTPClient {
         urlRequest.timeoutInterval = request.timeout
         urlRequest.httpMethod = request.method.rawValue
         urlRequest.httpBody = request.body
-   
-        request.headers.forEach { key, value in
+
+        for (key, value) in request.headers {
             urlRequest.setValue(value, forHTTPHeaderField: key)
         }
 
@@ -102,12 +99,11 @@ public class URLSessionSharedHTTPClient: HTTPClient {
             throw NetworkError.invalidResponse
         }
 
-        guard (200...299).contains(httpResponse.statusCode) else {
+        guard (200 ... 299).contains(httpResponse.statusCode) else {
             throw NetworkError.httpStatus(httpResponse.statusCode)
         }
 
         do {
-
             return try decoder.decode(T.self, from: data)
         } catch {
             throw NetworkError.decoding(error)
@@ -115,18 +111,13 @@ public class URLSessionSharedHTTPClient: HTTPClient {
     }
 }
 
-
-
-
 public extension HTTPClient {
-    
-    func send<Body: Encodable, T: Decodable> (
+    func send<Body: Encodable, T: Decodable>(
         _ request: HTTPRequest,
         body: Body,
         type: T.Type,
         encoder: JSONEncoder = .defaultAPIEncoder
     ) async throws -> T {
-        
         var req = request
         let data = try encoder.encode(body)
 
@@ -142,17 +133,17 @@ public extension HTTPClient {
         return try await send(req, decodeTo: type)
     }
 }
+
 //
 /*
-curl -X POST \
-  "https://api-jictu6k26a-uc.a.run.app/users/test-user/medications?" \
-  -H "x-api-key: healthengine-mobile-test-2026" \
-  -H "Content-Type: application/json" \
-  -d '{
-    "name": "Aspirin",
-    "dosage": "500mg",
-    "frequency": "daily"
-  }'
- 
- */
+ curl -X POST \
+   "https://api-jictu6k26a-uc.a.run.app/users/test-user/medications?" \
+   -H "x-api-key: healthengine-mobile-test-2026" \
+   -H "Content-Type: application/json" \
+   -d '{
+     "name": "Aspirin",
+     "dosage": "500mg",
+     "frequency": "daily"
+   }'
 
+  */

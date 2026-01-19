@@ -1,5 +1,5 @@
-import XCTest
 @testable import HEUILibrary
+import XCTest
 
 final class HEUILibraryTests: XCTestCase {
     func testExample() throws {

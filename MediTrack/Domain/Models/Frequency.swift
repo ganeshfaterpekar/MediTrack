@@ -6,11 +6,11 @@
 //
 //
 enum Frequency: String, CaseIterable, Codable {
-    case daily = "daily"
+    case daily
     case twiceDaily = "twice_daily"
-    case weekly = "weekly"
+    case weekly
     case asNeeded = "as_needed"
-    
+
     var displayTitle: String {
         switch self {
         case .daily: return "Daily"

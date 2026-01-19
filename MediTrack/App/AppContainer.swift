@@ -22,14 +22,12 @@ final class AppContainer {
     func makeMedicationListVM() -> MedicationListViewModel {
         MedicationListViewModel(medicationService: medicationService)
     }
-    
+
     @MainActor
-    func makeMakeMediticationFormVM( _ medication: Medication? = nil) -> MedicationFormViewModel {
+    func makeMakeMediticationFormVM(_ medication: Medication? = nil) -> MedicationFormViewModel {
         MedicationFormViewModel(medication: medication, medicationService: medicationService)
     }
-
 }
-
 
 extension AppContainer {
     static func live() -> AppContainer {

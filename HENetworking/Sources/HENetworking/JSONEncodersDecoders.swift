@@ -38,7 +38,6 @@ public extension JSONDecoder {
     }
 }
 
-
 public extension JSONEncoder {
     static var defaultAPIEncoder: JSONEncoder {
         let encoder = JSONEncoder()
@@ -53,4 +52,3 @@ public extension JSONEncoder {
         return encoder
     }
 }
-

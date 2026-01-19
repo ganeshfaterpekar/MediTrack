@@ -12,5 +12,5 @@ protocol MedicationService {
     func getMedicationDetails(id: UUID) async throws -> Medication
     func createMedications(name: String, dosage: String, frequency: String) async throws -> Medication
     func updateMedication(id: String, name: String, dosage: String, frequency: String) async throws -> Medication
-    func deleteMedication(id: UUID) async throws  -> String
+    func deleteMedication(id: UUID) async throws -> String
 }
